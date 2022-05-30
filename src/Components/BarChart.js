@@ -59,31 +59,6 @@ const VisualBar = styled.div`
     background: ${props => props.color};
 `
 
-const Bars = days.map(
-    (i, index)=> {
-        console.log(data[index]['amount'])
-        // const [ColorGlobal, setColor] = React.useContext(Ctx)
-        return(
-        <Bar>
-                <AmountBox key={index} className="brown-box">
-                    {`$${data[index]['amount']}`}
-                </AmountBox>
-            <VisualBar
-                onClick={console.log("works!")}
-                price={data[index]['amount']}
-                key={index+10*2}
-                className="visual-bar"
-            
-            />
-        
-        <small style={{color: "rgb(190,189,180)", minWidth: "2em"}} className="small">
-            {i}
-        </small>
-    </Bar>
-        )
-    }
-)
-
 const Chart = styled.div`
     height: 15em;
     display: flex;
