@@ -10,8 +10,8 @@ padding: 2em 1.5em 0 1.5em;
 `
 
 
-const H1 = styled.h1`font-size: 1.5em; letter-spacing: 0.001em; color: rgb(49,38,28)
- font-weight: 400`
+const H1 = styled.h1`font-size: 1.8em; letter-spacing: 0.001em; color: #1A1211;
+ font-weight: 700`
 
 function Body(props){
     return (

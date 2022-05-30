@@ -83,9 +83,12 @@ const Chart = styled.div`
     height: 15em;
     display: flex;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
     border-bottom: 1px solid rgb(190,189,180);
     padding-bottom: 1.5em;
+    @media(min-width: 450px){
+        justify-content: space-around;
+    }
 `
 
 const Summary = styled.div`
@@ -97,7 +100,8 @@ const Summary = styled.div`
 
 const Sum = styled.h1`
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.2em;
+    color: #1A1211;
 `
 
 function BarChart(){
@@ -118,7 +122,7 @@ function BarChart(){
                     </Sum>
                 </ColumnFlexContainer>
                 <ColumnFlexContainer>
-                <small style={{fontSize: "0.88em", fontWeight: "bold", alignSelf: 'flex-end'}}>
+                <small style={{fontSize: "0.88em", fontWeight: "bold", alignSelf: 'flex-end', color:"#1A1211"}}>
                     +2.4%
                 </small>
                 <small style={{fontSize: "0.88em", fontWeight: "lighter", color: "rgb(150,160,150)"}}>
