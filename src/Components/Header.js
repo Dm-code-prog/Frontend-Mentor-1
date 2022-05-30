@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import { ColumnFlexContainer } from './ColumnFlexContainer';
+import React from 'react';
+
+import {Ctx} from '../App'
+
 
 
 const H = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #EA755D;
     padding: 1em 1.5em 1em 1.5em;
     height: 3em;
+    background-color: #EA755D;
     border-radius: 1em;
     margin-bottom: 1em;
     @media(min-width: 500px){
@@ -42,8 +46,10 @@ const C2 = styled.div`
 `
 
 function Header(props){
+    const [ColorGlobal, setColor] = React.useContext(Ctx)
+    console.log(ColorGlobal)
     return (
-        <H>
+        <H style={{backgroundColor: ColorGlobal}}>
             <ColumnFlexContainer style={{color: "white"}}>
                 <small  style={{fontSize: "1.1em", fontWeight: "lighter"}}>
                     My balance

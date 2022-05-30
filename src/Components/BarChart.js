@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { ColumnFlexContainer } from './ColumnFlexContainer'
 import {useEffect} from 'react'
 import data from '../data.json'
+import React from 'react'
+import {Ctx} from  '../App'
 
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -54,11 +56,13 @@ const VisualBar = styled.div`
     @media(min-width: 440px){
         width: 40px;
     }
+    background: ${props => props.color};
 `
 
 const Bars = days.map(
     (i, index)=> {
         console.log(data[index]['amount'])
+        // const [ColorGlobal, setColor] = React.useContext(Ctx)
         return(
         <Bar>
                 <AmountBox key={index} className="brown-box">
@@ -69,6 +73,7 @@ const Bars = days.map(
                 price={data[index]['amount']}
                 key={index+10*2}
                 className="visual-bar"
+            
             />
         
         <small style={{color: "rgb(190,189,180)", minWidth: "2em"}} className="small">
@@ -105,10 +110,34 @@ const Sum = styled.h1`
 `
 
 function BarChart(){
+    const [ColorGlobal, setColor] = React.useContext(Ctx)
     return (
         <>
             <Chart>
-                {Bars}
+                { days.map(
+    (i, index)=> {
+        console.log(data[index]['amount'])
+        return(
+        <Bar>
+                <AmountBox key={index} className="brown-box">
+                    {`$${data[index]['amount']}`}
+                </AmountBox>
+            <VisualBar
+                onClick={console.log("works!")}
+                price={data[index]['amount']}
+                key={index+10*2}
+                className="visual-bar"
+                color={ColorGlobal}
+            
+            />
+        
+        <small style={{color: "rgb(190,189,180)", minWidth: "2em"}} className="small">
+            {i}
+        </small>
+    </Bar>
+        )
+    }
+)}
             </Chart>
             <Summary>
                 <ColumnFlexContainer style={{background:"rgba(0,0,0,0.1)", padding: "0.7em", borderRadius: "10px"}}>
