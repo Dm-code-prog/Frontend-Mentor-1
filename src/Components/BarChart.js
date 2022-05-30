@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import { ColumnFlexContainer } from './ColumnFlexContainer'
 import {useEffect} from 'react'
 import data from '../data.json'
@@ -42,12 +42,19 @@ const AmountBox = styled.div`
     font-size: 0.8em;
     opacity: 0.1;
     @media (max-width: 440px){
-        opacity: 0;
+        display: none;
     }
 `
 
+const grow = x => keyframes`
+        0%{height: 0}
+        100%{height: calc(${x}px *3)}
+`
+
+
 const VisualBar = styled.div`
     height: calc(${props => props.price}px *3);
+    animation ${grow(props => props.price)} 1s ease-in-out;
     width: 100%;
     background-color: #EA755D;
     transition: 0.1s ease-in;
@@ -58,6 +65,7 @@ const VisualBar = styled.div`
     }
     background: ${props => props.color};
 `
+
 
 const Chart = styled.div`
     height: 15em;
@@ -80,8 +88,9 @@ const Summary = styled.div`
 
 const Sum = styled.h1`
     margin: 0;
-    font-size: 2.2em;
+    font-size: 2em;
     color: #1A1211;
+
 `
 
 function BarChart(){

@@ -15,7 +15,7 @@ const Sidebar = styled.div`
   position: absolute;
   width: 90px;
   height: 120%;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(255,255,255,0.7);
   z-index: 0;
   @media(max-width: 700px){
     display: none;
@@ -32,25 +32,33 @@ const Color = styled.div`
   border-radius: 10px;
   cursor: pointer;
   z-index: 1;
+  opacity : ${props => props.global === props.c || props.initial ? "1" : "0.3"};
+  transform: scale(${props => props.global === props.c || props.initial ? "1.2" : "1" });
+
   @media(max-width: 700px){
     display: none;
   }
   &:hover{
-    transform: scale(1.06);
+    opacity: 1;
   `
   const Ctx = React.createContext();
 
 function App() {
   const [ColorGlobal, setColor] = React.useState('')
+  const [Initial, setInitial] = React.useState(true);
+  function handleColorPick(c){
+    setColor(c);
+    setInitial(false);
+  }
   return (
    <Ctx.Provider value={[ColorGlobal, setColor]}>
   <>
    <Sidebar></Sidebar>
-   <Color c="#EC4E20" top="30px" onClick={()=> setColor("#EC4E20")}/>
-   <Color c="#FF9505" top="90px" onClick={()=> setColor("#FF9505")}/>
-   <Color c="#016FB9" top="150px" onClick={()=> setColor("#016FB9")}/>
-   <Color c="#340068" top="210px"onClick={()=> setColor("#340068")}/>
-   <Color c="#EA755D" top="270px"onClick={()=> setColor("#EA755D")}/>
+   <Color c="#50C878" top="32px" onClick={()=>handleColorPick("#50C878")} global={ColorGlobal} />
+   <Color c="#FF9505" top="92px" onClick={()=>handleColorPick("#FF9505")}  global={ColorGlobal}/>
+   <Color c="#016FB9" top="152px" onClick={()=>handleColorPick("#016FB9")}  global={ColorGlobal}/>
+   <Color c="#340068" top="212px"onClick={()=>handleColorPick("#340068")}  global={ColorGlobal}/>
+   <Color c="#EA755D" top="272px"onClick={()=>handleColorPick("#EA755D")}  global={ColorGlobal} initial={Initial}/>
     <Card>
       <Header
         balance="$1999.976"
